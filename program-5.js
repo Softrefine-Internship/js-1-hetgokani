@@ -11,3 +11,22 @@ Given an integer array flowerbed containing 0's and 1's, where 0 means empty and
 // Example 2:
 // Input: flowerbed = [1,0,0,0,1], n = 2
 // Output: false
+"use strict";
+
+function placingFlowers(flowerbed, n) {
+  let counting = 0;
+  for (let i = 0; i < flowerbed.length; i++) {
+    if (
+      flowerbed[i] === 0 &&
+      (flowerbed[i - 1] === 0 || i === 0) &&
+      (flowerbed[i + 1] === 0 || i === flowerbed.length - 1)
+    ) {
+      flowerbed[i] = 1;
+      counting++;
+    }
+    if (counting >= n) return true;
+  }
+  return false;
+}
+console.log(placingFlowers([1, 0, 0, 0, 1], 1));
+console.log(placingFlowers([1, 0, 0, 0, 1], 2));
